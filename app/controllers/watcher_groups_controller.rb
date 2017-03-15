@@ -47,7 +47,7 @@ class WatcherGroupsController < ApplicationController
   def groups_for_new_watcher
     scope = nil
     if params[:q].blank? && @project.present?
-      scope = Group.where(id: @project.principals.select{|p| p if p.type = 'Group'}.map{|i| i.id})
+      scope = Group.where(id: @project.principals.select{|p| p if p.type == 'Group'}.map{|i| i.id})
     else
       scope = Group.all.limit(100)
     end

@@ -32,9 +32,9 @@ module WatcherGroupsWatcherHelperPatch
         def addable_watcher_groups
           groups = self.project.principals.select{|p| p if p.type=='Group'}
           groups = groups.sort - self.watcher_groups
-          if respond_to?(:visible?)
-            groups.reject! {|group| !visible?(User.where(id: group.id))}
-          end
+          #if respond_to?(:visible?)
+          #  groups.reject! {|group| !visible?(group)}
+          #end
           groups
         end
 
