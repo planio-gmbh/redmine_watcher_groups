@@ -5,6 +5,7 @@ class WatcherGroupsController < ApplicationController
   # before_filter :authorize, :only => [:new, :destroy]
 
   def new
+    @groups = groups_for_new_watcher
   end
 
   def create
@@ -39,11 +40,25 @@ class WatcherGroupsController < ApplicationController
   end
 
   def autocomplete_for_group
-    @groups = Group.active.like(params[:q]).find(:all, :limit => 100)
-    if @watched
-      @groups -= @watched.watcher_groups
-    end
+    @groups = groups_for_new_watcher
     render :layout => false
+  end
+
+  def groups_for_new_watcher
+    scope = nil
+    if params[:q].blank? && @project.present?
+      scope = Group.where(id: @project.principals.select{|p| p if p.type = 'Group'}.map{|i| i.id})
+    else
+      scope = Group.all.limit(100)
+    end
+
+    groups = scope.active.sorted.like(params[:q]).to_a
+
+    if @watched
+      groups -= @watched.watcher_groups
+    end
+
+    groups
   end
 
 private

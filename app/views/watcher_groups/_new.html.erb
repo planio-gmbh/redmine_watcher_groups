@@ -15,9 +15,7 @@
                  :object_id => watched) }')" %>
 
   <div id="groups_for_watcher">
-    <%= principals_check_box_tags 'watcher_group[group_ids][]', (
-      # watched ? watched.addable_watcher_groups : 
-      Group.active.all.limit(100)) %>
+    <%= principals_check_box_tags 'watcher_group[group_ids][]', ( watched ? watched.addable_watcher_groups : Group.active.all.limit(100)) %>
   </div>
 
   <p class="buttons">
