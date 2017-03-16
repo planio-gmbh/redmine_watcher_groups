@@ -23,14 +23,14 @@ module WatcherGroupsWatcherHelperPatch
     	include WatcherGroupsHelper
 
     	def watcher_groups
-        groups = Watcher.where("watchable_type='#{self.class}' and watchable_id = #{self.id}")
+        groups = Watcher.where(watchable_type: self.class, watchable_id: self.id)
         return [] if groups.empty?
         Group.where(id: groups.map(&:user_id))
     	end
 
         # Returns an array of users that are proposed as watchers
         def addable_watcher_groups
-          groups = self.project.principals.select{|p| p if p.type=='Group'}
+          groups = self.project.principals.select{|p| p if p.type == 'Group' }
           groups = groups.sort - self.watcher_groups
           #if respond_to?(:visible?)
           #  groups.reject! {|group| !visible?(group)}
