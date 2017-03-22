@@ -39,7 +39,7 @@ module WatcherGroupsHelper
                :group_id => group}
         s << ' '
         s << link_to(l(:button_delete), url,
-                     :remote => true, :method => 'delete',
+                     :remote => true, :method => 'post',
                      :class => "delete icon-only icon-del",
                      :title => l(:button_delete))
       end
