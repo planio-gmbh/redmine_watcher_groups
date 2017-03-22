@@ -1,7 +1,7 @@
 #watcher_groups ul {margin: 0;  padding: 0;}
 #watcher_groups li {list-style-type:none;margin: 0px 2px 0px 0px; padding: 0px 0px 0px 0px;}
 #watcher_groups select {width: 95%; display: block;}
-#watcher_groups a.delete {opacity: 0.4;}
+#watcher_groups a.delete {opacity: 0.4; width: 12px; text-indent: -9999px; vertical-align: middle; display: inline-block;}
 #watcher_groups a.delete:hover {opacity: 1;}
 #watcher_groups img.gravatar {margin: 0 4px 2px 0;}
 

@@ -12,10 +12,10 @@ module WatcherGroupsHelper
   def link_to_group(group, options={})
     if group.is_a?(Group)
       name = h(group.name) # (options[:format]))
-      # if group.active?  # || (User.current.admin? && user.logged?)
+      # if group.active?
       #   link_to name, user_path(user), :class => user.css_classes
       # else
-        name
+      #   name
       # end
     else
       h(group.to_s)
@@ -38,12 +38,14 @@ module WatcherGroupsHelper
                :object_id => object.id,
                :group_id => group}
         s << ' '
-        s << link_to(image_tag('delete.png'), url,
-                     :remote => true, :method => 'post', :style => "vertical-align: middle", :class => "delete")
+        s << link_to(l(:button_delete), url,
+                     :remote => true, :method => 'delete',
+                     :class => "delete icon-only icon-del",
+                     :title => l(:button_delete))
       end
-      content << content_tag('li', s)
+      content << content_tag('li', s, :class => "group-#{group.id}")
     end
-    content.present? ? content_tag('ul', content) : content
+    content.present? ? content_tag('ul', content, :class => 'watcher-groups') : content
   end
 
   def watcher_groups_checkboxes(object, groups, checked=nil)
