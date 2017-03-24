@@ -21,5 +21,4 @@ Redmine::Plugin.register :redmine_watcher_groups do
   description 'This is a plugin for Redmine to add wathcer groups functionality'
   version '1.0.0'
   url 'https://github.com/ppyv/redmine_watcher_groups'
-  author_url 'kamenf'
 end
