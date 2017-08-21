@@ -1,4 +1,4 @@
-<% !watched.blank? && if User.current.allowed_to?(:add_issue_watchers, @project) %>
+<% if watched.present? && User.current.allowed_to?(:add_issue_watchers, @project) %>
 <div class="contextual">
 <%= link_to l(:button_add),
       {:controller => 'watcher_groups', :action => 'new', :object_type => watched.class.name.underscore, :object_id => watched},
