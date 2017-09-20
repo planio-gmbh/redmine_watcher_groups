@@ -2,7 +2,8 @@ module WatcherGroups
   class ViewsIssuesHook < Redmine::Hook::ViewListener
 
     def view_issues_sidebar_queries_bottom(context={ })
-      if (context[:controller].action_name == 'show') and
+      if context[:controller].controller_name == 'issues' and
+         context[:controller].action_name == 'show' and
          (!context[:request].parameters[:id].blank?)
 
         @issue = Issue.find(context[:request].parameters[:id])
